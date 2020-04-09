@@ -38,11 +38,10 @@ vector<int> computeShortestPath(Graph g, int node){
       adjacent.pop_front();
     }
   }
-  
   /* handles MAX and overflow INT (neg values) to equal -1 for controlled list */
   for( int i = 0; i < n; i++ ) if( distance[i] == MAX || distance[i] < 0 ) distance[i] = -1;
   /* print distance */
-  cout << "distnace[" << node << "]: "; for( int i = 0; i < n; i++ ) cout << "\t" << distance[i]; cout << endl;
+  // cout << "Dijkstra's_distance[" << node << "]: "; for( int i = 0; i < n; i++ ) cout << "\t" << distance[i]; cout << endl;
 
   return distance;
 };
@@ -54,11 +53,37 @@ vector<vector<int> > computeAllPairsShortestPath(Graph g){
   return allPairsShortestPath;
 };
 
-////BONUS
-////####compute all possible shortest paths by implementing the dynamic programming approach
-// Matrix computeAllPairsShortestPathDynamicProgramming(Graph g){
+//BONUS
+//####compute all possible shortest paths by implementing the dynamic programming approach
+Matrix computeAllPairsShortestPathDynamicProgramming(Graph g){
+  int n = g.size();
+  Matrix distance(n, vector<int>(n, 0));
+  
+  for( int i = 0; i < n; i++ ) for( int j = 0; j < n; j++ ) if( i != j) {
+    if( g.connected(i, j) ) distance[i][j] = g.getEdgeWeight(i, j);
+    else distance[i][j] = MAX;
+  }
 
-// };
+  Matrix newDistance = distance;
+  for( int k = 0; k < n; k++ ) { 
+    for( int i = 0; i < n; i++ ) for( int j = 0; j < n; j++ ) if( i != j ) {
+      int d = distance[i][k] + distance[k][j];
+      if( d < 0 ) d = MAX; // handles INT overflow from adding two MAX INT values
+      newDistance[i][j] = min(distance[i][j], d);
+    }
+    distance.swap(newDistance);
+  }
+  /* handles MAX and overflow INT (neg values) to equal -1 for controlled list */
+  for( int i = 0; i < n; i++ ) for( int j = 0; j < n; j++) {
+    if( distance[i][j] == MAX || distance[i][j] < 0 ) distance[i][j] = -1;
+  }
+  /* print adjusted matrix */
+  // cout << endl; for( int i = 0; i < n; i++ ) {
+  //   cout << "Dynamic_distance[" << i << "]: \t"; for( int j = 0; j < n; j++ ) cout << "\t" << distance[i][j]; cout << endl;
+  // }
+
+  return distance;
+};
 
 bool compareResults(Graph g, Matrix a, Matrix b){
 
@@ -81,14 +106,13 @@ int main(){
   cout << "Graph generated " << endl;
   
   /* print graph and list of connected nodes for each node */
-  g.print(); cout << endl;
+  // g.print(); cout << endl;
   // for( int i = 0; i < 10; i++ ) {
   //   list<int> ls = g.getConnectedNodes(i);
   //   cout << "node " << i << ": ";
   //   for( auto it = ls.begin(); it != ls.end(); ++it ) cout << " " << *it; // requires -std=c++1
   //   cout << endl;
-  // }
-  cout << endl;
+  // } cout << endl;
 
   //compute shortest path
   Timer time;
@@ -97,18 +121,18 @@ int main(){
   time.stop();
   cout << endl << "Time with Dijkstra's algorithm: " << time.getElapsedTimeInSec() << endl;
 
-  // //compute all possible shortest paths
-  // time.start();
-  // Matrix b = computeAllPairsShortestPathDynamicProgramming(g);
-  // time.stop();
-  // cout << endl << "Time with Dynamic programming: " << time.getElapsedTimeInSec() << endl;
+  //compute all possible shortest paths
+  time.start();
+  Matrix b = computeAllPairsShortestPathDynamicProgramming(g);
+  time.stop();
+  cout << endl << "Time with Dynamic programming: " << time.getElapsedTimeInSec() << endl;
 
-  // //compute by dynamic programming approach
-  // if(compareResults(g,a,b)){
-  //   cout << "They are the same" << endl;
-  // }
-  // else{
-  //   cout << "Different" << endl;
-  // }
+  //compute by dynamic programming approach
+  if(compareResults(g,a,b)){
+    cout << "They are the same" << endl;
+  }
+  else{
+    cout << "Different" << endl;
+  }
 
 };

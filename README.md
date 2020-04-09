@@ -47,3 +47,34 @@ Once the algorithms are implemented, evaluate their performances. Test your impl
 - increment the number of arcs (1000, 40000)
 
 Open this README file with a normal text editor and report the timings obtained discussing the reason why you obtained each result.
+
+# use a simple graph with 10 nodes and 20 arcs
+
+  Result: 
+    Graph generated 
+    Time with Dijkstra's algorithm: 0.000727
+    Time with Dynamic programming: 5.1e-05
+    They are the same
+  
+    Dynamic programming is over 14 times (7.27e-4/5.1e-05) faster than Dijkstra's algorithm. Dynamic programming is faster in general because it doesn't have to compute the distance for each node everytime like Dijkstra's does. However, Dijkstra's significantly slower given (10, 20) because the more edges there are, the more frequent a vertex is being updated.
+
+# increment the number of nodes to be lower than the number of arcs (1000, 500)
+
+  Result:
+    Graph generated 
+    Time with Dijkstra's algorithm: 29.28
+    Time with Dynamic programming: 17.6824
+    They are the same
+
+    Dynamic programming is about 1.6 times (29.28/17.6824) faster than Dijkstra's algorithm. This time Dynamic programming didn't get a significant lead because
+
+# increment the number of arcs (1000, 40000)
+
+  Result:
+    Graph generated 
+    Time with Dijkstra's algorithm: 198.539
+    Time with Dynamic programming: 17.5887
+    They are the same
+
+    Dynamic programming is about 11 times faster than Dijkstra's algorithm.
+
