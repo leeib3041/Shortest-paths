@@ -26,12 +26,10 @@ class Graph{
         do{
           node1 = rand()%(nNodes);
           node2 = rand()%(nNodes);
-          cout << "BEFORE ----> node1: " << node1 << "     node2: " << node2 << endl;
-        }while(node1 == node2 || !connected(node1,node2));
-        cout << "AFTER ----> node1: " << node1 << "     node2: " << node2 << endl<<endl;
+        }while(node1 == node2 || connected(node1,node2));
+        
         graph[node1][node2] = graph[node2][node1] = weight;
       }
-
     }
 
     int size(){
@@ -42,8 +40,7 @@ class Graph{
     list<int> getConnectedNodes(int n){
       //### return a list with the nodes connected to node
       list<int> connectedNodes;
-    
-
+      for( int i = 0; i < size(); i++ ) if( graph[n][i] > 0 ) connectedNodes.push_back(i);
       return connectedNodes;
     }
 
@@ -54,14 +51,14 @@ class Graph{
 
     bool connected(int n, int n2){
       //### return true if the two nodes are connected
-      return graph[n][n2] == graph[n2][n];
+      return graph[n][n2] > 0;
     }
 
     void print(){
       //### you can implement this for debugging purposes
       for( int i = 0; i < size(); i++ ) {
         for( int j = 0; j < size(); j++ ) {
-          cout << "\t" << graph[i][j];
+          cout << graph[i][j] << "\t";
         }
         cout << endl;
       }
