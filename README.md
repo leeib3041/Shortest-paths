@@ -48,33 +48,42 @@ Once the algorithms are implemented, evaluate their performances. Test your impl
 
 Open this README file with a normal text editor and report the timings obtained discussing the reason why you obtained each result.
 
-# use a simple graph with 10 nodes and 20 arcs
-
-  Result: 
+### use a simple graph with 10 nodes and 20 arcs
+```
+Result: 
     Graph generated 
     Time with Dijkstra's algorithm: 0.000727
     Time with Dynamic programming: 5.1e-05
     They are the same
-  
-    Dynamic programming is over 14 times (7.27e-4/5.1e-05) faster than Dijkstra's algorithm. Dynamic programming is faster in general because it doesn't have to compute the distance for each node everytime like Dijkstra's does. However, Dijkstra's significantly slower given (10, 20) because the more edges there are, the more frequent a vertex is being updated.
+```
+Dynamic programming is over 14 times (7.27e-4/5.1e-05) faster than Dijkstra's algorithm. Dynamic programming is faster in general because it doesn't have to compute the distance for each node everytime like Dijkstra's does. However, Dijkstra's significantly slower given (10, 20) because the more edges there are, the more frequent a vertex is being updated.
 
-# increment the number of nodes to be lower than the number of arcs (1000, 500)
-
-  Result:
+### increment the number of nodes to be lower than the number of arcs (1000, 500)
+```
+Result:
     Graph generated 
     Time with Dijkstra's algorithm: 29.28
     Time with Dynamic programming: 17.6824
     They are the same
+```
+Dynamic programming is about 1.6 times (29.28/17.6824) faster than Dijkstra's algorithm. This time Dynamic programming didn't get a significant lead because
 
+<<<<<<< HEAD
     Dynamic programming is about 1.6 times (29.28/17.6824) faster than Dijkstra's algorithm. This time Dynamic programming didn't get a significant lead because the advantage of DP is re-using data. Compared to the previous run, both the number of nodes and edges are much higher. However, this time the number of nodes is much more than the number of edges. Again, because the advantage of DP is re-using data, DP had to calculate all those nodes just like Dijkstra and only got ahead while going through the relatively insignificant edges.
 
 # increment the number of arcs (1000, 40000)
 
   Result:
+=======
+### increment the number of arcs (1000, 40000)
+```
+Result:
+>>>>>>> 29cd8eba4d425e10fcd68d883d88e56b52dad342
     Graph generated 
     Time with Dijkstra's algorithm: 198.539
     Time with Dynamic programming: 17.5887
     They are the same
+<<<<<<< HEAD
 
     Dynamic programming is about 11 times faster than Dijkstra's algorithm. Just like the 1st run, DP is significantly faster than Dijkstra. This time we kept the same number of nodes as the 2nd run, but increased the number of edges. Because the number of nodes is what heavily affects the run time of DP, there is hardly any change compared to 2nd run. The 80 times more number of edges has insignificant additon to the run time of DP because it's just look-up that it has to do. Dijkstra suffers for the same reason layed out in 1st run.
 
@@ -84,4 +93,8 @@ Open this README file with a normal text editor and report the timings obtained 
   Dynamic Programming is more negatively affected by the number of nodes than edges
   Dijkstra is more negatively affected by the number of edges than nodes
   The smaller the gap between the number of nodes and edges, the bigger the time gap. Then vice versa.
+=======
+```
+Dynamic programming is about 11 times faster than Dijkstra's algorithm.
+>>>>>>> 29cd8eba4d425e10fcd68d883d88e56b52dad342
 
