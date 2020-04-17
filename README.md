@@ -56,7 +56,7 @@ Result:
     Time with Dynamic programming: 5.1e-05
     They are the same
 ```
-    Dynamic programming is over 14 times (7.27e-4/5.1e-05) faster than Dijkstra's algorithm. Dynamic programming is faster in general because it doesn't have to compute the distance for each node everytime like Dijkstra's does. However, Dijkstra's significantly slower given (10, 20) because the more edges there are, the more frequent a vertex is being updated.
+Dynamic programming is over 14 times (7.27e-4/5.1e-05) faster than Dijkstra's algorithm. Dynamic programming is faster in general because it doesn't have to compute the distance for each node everytime like Dijkstra's does. However, Dijkstra's significantly slower given (10, 20) because the more edges there are, the more frequent a vertex is being updated.
 
 ### increment the number of nodes to be lower than the number of arcs (1000, 500)
 ```
@@ -66,7 +66,7 @@ Result:
     Time with Dynamic programming: 17.6824
     They are the same
 ```
-    Dynamic programming is about 1.6 times (29.28/17.6824) faster than Dijkstra's algorithm. This time Dynamic programming didn't get a significant lead because
+Dynamic programming is about 1.6 times (29.28/17.6824) faster than Dijkstra's algorithm. This time Dynamic programming didn't get a significant lead because
 
 ### increment the number of arcs (1000, 40000)
 ```
@@ -76,5 +76,5 @@ Result:
     Time with Dynamic programming: 17.5887
     They are the same
 ```
-    Dynamic programming is about 11 times faster than Dijkstra's algorithm.
+Dynamic programming is about 11 times faster than Dijkstra's algorithm.
 
